@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    padding-right: var(--spacing);
+    border-bottom: 1px solid #e6ecf0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+}
+
+.header img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.user-actions button {
+    font-weight: 600;
+    background: none;
+}

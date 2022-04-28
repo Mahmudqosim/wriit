@@ -1,0 +1,31 @@
+.new-note {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin-right: 10px;
+    padding: 1rem;
+}
+
+.new-note input, .new-note textarea {
+    border: 1px solid var(--black-color);
+    border-radius: 0;
+    padding: 1rem;
+    background: var(--light-black);
+}
+
+.new-note input {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.new-note textarea {
+    resize: vertical;
+    height: 250px;
+}
+
+.new-note button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+}

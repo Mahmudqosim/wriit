@@ -1,0 +1,53 @@
+article {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    background: var(--light-black);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.title, .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title span {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.title button {
+    background: none;
+    color: var(--main-color);
+    font-weight: 600;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.title div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.user {
+    font-size: .875rem;
+}
+
+.user .author {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user img {
+    margin-right: 10px;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
