@@ -7,10 +7,21 @@ article {
     border-radius: var(--border-radius);
 }
 
+.image {
+    height: auto;
+    width: 7rem;
+    height: 10rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
 .title, .user{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .title span {
@@ -50,4 +61,10 @@ article {
     border-radius: 50%;
     height: 25px;
     width: 25px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    border: 1px solid var(--main-color);
+    background: var(--text-color);
 }
+

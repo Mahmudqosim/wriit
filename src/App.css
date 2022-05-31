@@ -1,17 +1,29 @@
 .page {
-    display: block;
+  display: block;
 }
-  
+
+/* .auth-page {
+  grid-column: span 12 !important;
+} */
+
 .main {
-    margin-left: calc(var(--desktop-margin-width) + (var(--spacing) * 3));
+  /* margin-left: calc(var(--desktop-margin-width) + (var(--spacing) * 3)); */
+  /* grid-column: span 11; */
+  width: 100%;
 }
 
 .btn {
-    background: var(--main-color);
-    color: var(--white-color);
-    padding: .5rem 1.25rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: var(--border-radius);
-    width: fit-content;
+  background: var(--main-color);
+  color: var(--white-color);
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  width: fit-content;
+}
+
+@media screen and (max-width: 675px) {
+  .main {
+      margin-bottom: calc(var(--nav-height) + 50px);
+  }
 }

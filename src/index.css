@@ -1,8 +1,9 @@
-@import "https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css";
+@import "boxicons-2.0.7/css/boxicons.min.css";
 
 :root {
   --desktop-margin-width: 18%;
   --spacing: 20px;
+  --nav-height: 50px;
 
   --white-color: #fff;
   --black-color: #121212;
@@ -22,6 +23,36 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   overflow-x: hidden;
 }
+
+html {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+
+@media screen and (max-width: 235px) {
+  html {
+    font-size: 8px;
+  }
+}
+
 
 h1 {
   margin: 0;
@@ -52,6 +83,10 @@ i {
   font-weight: inherit;
 }
 
+.page-title {
+  margin-left: 1rem;
+}
+
 .error {
   background: rgb(218, 14, 14);
   color: rgb(250, 212, 206);
@@ -61,3 +96,16 @@ i {
   padding: .5rem 1rem;
   border-radius: var(--border-radius);
 }
+
+.app {
+  display: flex;
+  /* grid-template-columns: repeat(12, 1fr); */
+}
+
+
+/* @media screen and (max-width: 675px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+}
+ */

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useMutation, gql } from "@apollo/client"
 import { useNavigate } from "react-router-dom"
 import { MetaData } from "../../components/MetaData"
-import { GET_AVATAR } from "../../gql/query"
+import { GET_AVATAR, GET_ME, GET_NOTES } from "../../gql/query"
 
 import "../auth.css"
 import Loader from "../../components/Loader/Loader"
@@ -14,7 +14,7 @@ const SIGNIN_USER = gql`
   }
 `
 
-export default function Signup() {
+export default function Signin() {
   const isLoggedIn = auth.isAuthenticated()
   const navigate = useNavigate()
   const [values, setValues] = useState({
@@ -24,6 +24,10 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   const [loadingAuth, setLoadingAuth] = useState(false)
 
+/*   useEffect(() => {
+    document.querySelector(".main").classList.add("auth-page")
+  }, []) */
+
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/")
@@ -31,7 +35,7 @@ export default function Signup() {
   }, [isLoggedIn, navigate])
 
   const [signIn, { error }] = useMutation(SIGNIN_USER, {
-    refetchQueries: [{ query: GET_AVATAR }],
+    refetchQueries: [{ query: GET_NOTES }, { query: GET_AVATAR }, {query: GET_ME}],
     onCompleted: (data) => {
       // store the token
       localStorage.setItem("token", data.signIn)

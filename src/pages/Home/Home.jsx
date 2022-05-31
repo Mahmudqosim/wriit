@@ -16,6 +16,7 @@ const GET_NOTES = gql`
         id
         title
         content
+        image
         favoriteCount
         createdAt
         author {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useMutation, gql } from "@apollo/client"
 import { useNavigate } from "react-router-dom"
 import { MetaData } from "../../components/MetaData"
-import { GET_AVATAR } from '../../gql/query'
+import { GET_AVATAR, GET_ME, GET_NOTES } from "../../gql/query"
 import auth from "../../auth/auth-helper"
 
 import "../auth.css"
@@ -25,6 +25,9 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   const [loadingAuth, setLoadingAuth] = useState(false)
 
+/*   useEffect(() => {
+    document.querySelector('.main').classList.add('auth-page')
+  }, []) */
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -33,7 +36,7 @@ export default function Signup() {
   }, [isLoggedIn, navigate])
 
   const [signUp, { error }] = useMutation(SIGNUP_USER, {
-    refetchQueries: [{ query: GET_AVATAR }],
+    refetchQueries: [{ query: GET_NOTES }, { query: GET_AVATAR }, {query: GET_ME}],
     onCompleted: (data) => {
       // store the token
       localStorage.setItem("token", data.signUp)
@@ -75,6 +78,8 @@ export default function Signup() {
       <div className="auth">
         <h1>Join Wriit</h1>
         <form className="auth-form" onSubmit={handleSubmit}>
+          {error && <div className="error">{error.message}</div>}
+          
           <div className="form-input">
             <label htmlFor="username">Username:</label>
             <input
@@ -118,8 +123,6 @@ export default function Signup() {
           <button disabled={loadingAuth} className="btn" type="submit">
             Submit {loadingAuth && <Loader />}
           </button>
-
-          {error && <div className="error">{error.message}</div>}
         </form>
       </div>
     </>

@@ -9,6 +9,7 @@ const GET_NOTES = gql`
         id
         createdAt
         content
+        image
         favoriteCount
         author {
           username
@@ -25,6 +26,7 @@ const GET_NOTE = gql`
       id
       createdAt
       title
+      image
       content
       favoriteCount
       author {
@@ -54,6 +56,7 @@ const GET_MY_NOTES = gql`
         id
         title
         createdAt
+        image
         content
         favoriteCount
         author {
@@ -75,6 +78,7 @@ const GET_MY_FAVORITES = gql`
         title
         createdAt
         content
+        image
         favoriteCount
         author {
           username
@@ -90,6 +94,10 @@ const GET_ME = gql`
   query me {
     me {
       id
+      username
+      email
+      avatar
+      bio
       favorites {
         id
       }
@@ -97,4 +105,40 @@ const GET_ME = gql`
   }
 `
 
-export { GET_NOTES, GET_NOTE, GET_AVATAR, GET_MY_NOTES, GET_MY_FAVORITES, GET_ME }
+const GET_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      id
+      username
+      email
+      avatar
+      bio
+      notes {
+        id
+        title
+        image
+        content
+        createdAt
+        updatedAt
+        favoriteCount
+        
+        author {
+          username
+          email
+          avatar
+          id
+        }
+      }
+    }
+  }
+`
+
+export {
+  GET_NOTES,
+  GET_NOTE,
+  GET_AVATAR,
+  GET_MY_NOTES,
+  GET_MY_FAVORITES,
+  GET_ME,
+  GET_USER,
+}

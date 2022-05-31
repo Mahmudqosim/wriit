@@ -9,6 +9,8 @@ import auth from "../../auth/auth-helper"
 import NoteForm from "../../components/NoteForm/NoteForm"
 import { MetaData } from "../../components/MetaData"
 
+import './EditNote.css'
+
 export default function EditNote() {
   const [loadingSave, setLoadingSave] = useState(false)
   const isLoggedIn = auth.isAuthenticated()
@@ -38,6 +40,7 @@ export default function EditNote() {
     },
   })
 
+
   if (loading) return <Loader type="main" />
 
   if (error) return <div className="error">Error! Note not found</div>
@@ -52,6 +55,7 @@ export default function EditNote() {
       <NoteForm
         content={data.note.content}
         title={data.note.title}
+        image={data.note.image}
         loadingSave={loadingSave}
         setLoadingSave={setLoadingSave}
         action={editNote}

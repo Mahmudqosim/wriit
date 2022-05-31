@@ -12,6 +12,7 @@ const GET_NOTE = gql`
       title
       createdAt
       content
+      image
       favoriteCount
       author {
         username
@@ -29,17 +30,30 @@ export default function NotePage() {
 
   if (loading) return <Loader type="main" />
 
-  if (error)
+  if (error) {
+    console.log(Object.create(error))
+    if (error.graphQLErrors[0].extensions.exception.kind && error.graphQLErrors[0].extensions.exception.kind === "ObjectId") {
+      return (
+        <div className="error">
+          Note can't be found!.
+        </div>
+      )
+    }
+
     return (
       <div className="error">
         Error! failed to fetch. Please reload the page.
       </div>
     )
+  }
 
   return (
-    <>
-      <MetaData title={data.note.title} description={`${data.note.title} by ${data.note.author.username}`} />
+    <div>
+      <MetaData
+        title={data.note.title}
+        description={`${data.note.title} by ${data.note.author.username}`}
+      />
       <Note show="full" note={data.note} />
-    </>
+    </div>
   )
 }

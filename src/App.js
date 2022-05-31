@@ -1,5 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from "@apollo/client"
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client"
 import { setContext } from "apollo-link-context"
 
 import Favorites from "./pages/Favorites/Favorites"
@@ -15,9 +20,11 @@ import Signup from "./pages/Signup/Signup"
 import Signin from "./pages/Signin/Signin"
 import NewNote from "./pages/NewNote/NewNote"
 import EditNote from "./components/EditNote/EditNote"
+import Profile from "./pages/Profile/Profile"
+import EditProfile from "./pages/EditProfile/EditProfile"
 
 // API URI & cache
-const uri = process.env.API_URL
+const uri = "http://localhost:3030/api"
 const httpLink = createHttpLink({ uri })
 const cache = new InMemoryCache()
 
@@ -39,36 +46,39 @@ const client = new ApolloClient({
     Query: {
       isLoggedIn() {
         return !!localStorage.getItem("token")
-      }
-    }
+      },
+    },
   },
   connectToDevTools: true,
 })
 
-
 export default function App() {
   return (
-    <BrowserRouter  forceRefresh={true}>
-      <ApolloProvider client={client}>
-        <Navbar />
+    <BrowserRouter>
+      <div className="app">
+        <ApolloProvider client={client}>
+          <Navbar />
 
-        <div className="main">
-          <Header title="Wriit - The Virtual Space for writers" />
+          <div className="main">
+            <Header />
 
-          <div className="page">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/mynotes" element={<MyNotes />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/note/:id" element={<NotePage />} />
-              <Route path="/edit/:id" element={<EditNote />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/signin" element={<Signin />} />
-              <Route path="/new" element={<NewNote />} />
-            </Routes>
+            <div className="page">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/mynotes" element={<MyNotes />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/note/:id" element={<NotePage />} />
+                <Route path="/edit/:id" element={<EditNote />} />
+                <Route path="/new" element={<NewNote />} />
+                <Route path="/profile/edit" element={<EditProfile />} />
+                <Route path="/profile/:username" element={<Profile />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </ApolloProvider>
+        </ApolloProvider>
+      </div>
     </BrowserRouter>
   )
 }

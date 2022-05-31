@@ -7,7 +7,6 @@ export default function FavoriteNote({ noteId, favoriteCount, me }) {
   const [count, setCount] = useState(favoriteCount)
 
   const [favorited, setFavorited] = useState(
-    // check if the note exists in the user favorites list
     me.favorites.filter((note) => note.id === noteId).length > 0
   )
 
@@ -15,8 +14,7 @@ export default function FavoriteNote({ noteId, favoriteCount, me }) {
     variables: {
       id: noteId,
     },
-    // refetch the GET_MY_FAVORITES query to update the cache
-    refetchQueries: [{ query: GET_MY_FAVORITES }],
+    refetchQueries: [{ query: GET_MY_FAVORITES }, ],
   })
 
   return (

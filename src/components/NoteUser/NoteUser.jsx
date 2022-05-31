@@ -14,13 +14,13 @@ export default function NoteUser({ note }) {
 
   return (
     <>
-      <button className="favorite">
+      <div className="favorite">
         <FavoriteNote
           me={data.me}
           noteId={note.id}
           favoriteCount={note.favoriteCount}
         />
-      </button>
+      </div>
 
       {data.me.id === note.author.id && (
         <>

@@ -1,0 +1,32 @@
+.note-image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    row-gap: 1rem;
+}
+
+.note-image img {
+    height: 180px;
+    width: auto;
+    object-fit: cover;
+}
+
+.note-image label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white-color);
+    background: var(--main-color);
+    width: 200px;
+    padding: .5rem 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    column-gap: .5rem;
+}
+
+.note-image label i {
+    font-size: 1.25rem;
+}

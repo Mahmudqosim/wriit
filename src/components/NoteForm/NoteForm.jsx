@@ -1,9 +1,12 @@
 import React, { useState } from "react"
 import Loader from "../Loader/Loader"
 
+import CanvasImage from "../../utils/CanvasImage"
+
 export default function NoteForm({
   title,
   content,
+  image,
   loadingSave,
   setLoadingSave,
   action,
@@ -12,7 +15,9 @@ export default function NoteForm({
   const [values, setValues] = useState({
     title: title || "",
     content: content || "",
+    image: image || ""
   })
+  const [source, setSource] = useState(null)
 
   // update the state when a user types in the form
   const onChange = (event) => {
@@ -20,6 +25,17 @@ export default function NoteForm({
       ...values,
       [event.target.name]: event.target.value,
     })
+  }
+
+  function handleFileChange(event) {
+    const reader = new FileReader()
+
+    reader.addEventListener("load", (e) => {
+      console.log(e)
+      setSource(reader.result)
+    })
+
+    reader.readAsDataURL(event.target.files[0])
   }
 
   return (
@@ -30,14 +46,37 @@ export default function NoteForm({
         setLoadingSave(true)
         action({
           variables: {
-            ...values,
+            ...values
           },
         })
       }}
     >
+      
+      <div>
+      <div className="note-image">
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          id="fileInput"
+          onChange={handleFileChange}
+          style={{
+            maxWidth: "100%",
+            display: "none",
+            visibility: "hidden",
+          }}
+        />
+
+        {values.image && <img alt="" src={values.image} />}
+        <label htmlFor="fileInput">Add Image <i className="bx bx-image-add" /></label>
+      </div>
+      {source && <CanvasImage setValues={setValues} values={values} source={source} />}
+      </div>
+
       {error && (
-        <div className="error">Error saving the note. Please retry.</div>
+        <div className="error">Error saving the note. Please retry. {error.message}</div>
       )}
+      
 
       <input
         required

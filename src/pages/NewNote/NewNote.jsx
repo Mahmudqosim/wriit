@@ -10,8 +10,8 @@ import "./NewNote.css"
 import NoteForm from "../../components/NoteForm/NoteForm"
 
 const NEW_NOTE = gql`
-  mutation newNote($title: String!, $content: String!) {
-    newNote(title: $title, content: $content) {
+  mutation newNote($title: String!, $content: String!, $image: String) {
+    newNote(title: $title, content: $content, image: $image) {
       id
       content
       createdAt
