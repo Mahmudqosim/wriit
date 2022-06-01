@@ -24,7 +24,7 @@ import Profile from "./pages/Profile/Profile"
 import EditProfile from "./pages/EditProfile/EditProfile"
 
 // API URI & cache
-const uri = "http://localhost:3030/api"
+const uri = "https://wriit.herokuapp.com/api"
 const httpLink = createHttpLink({ uri })
 const cache = new InMemoryCache()
 
