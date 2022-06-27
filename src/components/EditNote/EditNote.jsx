@@ -9,7 +9,7 @@ import auth from "../../auth/auth-helper"
 import NoteForm from "../../components/NoteForm/NoteForm"
 import { MetaData } from "../../components/MetaData"
 
-import './EditNote.css'
+import "./EditNote.css"
 
 export default function EditNote() {
   const [loadingSave, setLoadingSave] = useState(false)
@@ -32,6 +32,7 @@ export default function EditNote() {
   const { data: userData } = useQuery(GET_ME)
 
   const [editNote] = useMutation(EDIT_NOTE, {
+    refetchQueries: [{ query: GET_NOTE, variables: { id } }],
     variables: {
       id,
     },
@@ -39,7 +40,6 @@ export default function EditNote() {
       navigate(`/note/${id}`)
     },
   })
-
 
   if (loading) return <Loader type="main" />
 

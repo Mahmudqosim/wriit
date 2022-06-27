@@ -26,7 +26,7 @@ export default function Profile() {
 
   const { username } = useParams()
 
-  const { loading, error, data } = useQuery(GET_USER, {
+  const { loading, data } = useQuery(GET_USER, {
     variables: { username },
   })
 

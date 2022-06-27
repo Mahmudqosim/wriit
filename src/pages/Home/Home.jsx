@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader"
 import NoteFeed from "../../components/NoteFeed/NoteFeed"
 
 import "./Home.css"
+import { MetaData } from "../../components/MetaData"
 
 const GET_NOTES = gql`
   query Query($cursor: String) {
@@ -59,23 +60,28 @@ export default function HomePage() {
   // display the loader in UI if the data is loading
   if (loading) return <Loader type="main" />
 
-  if (error)
+  if (error) {
     return (
       <div className="error">
         Error! failed to fetch. Please reload the page.
       </div>
     )
+  }
 
   // display the data in UI if the data is successful
   return (
-    <div className="home">
-      <NoteFeed notes={data.noteFeed.notes} />
-      {/* Only display the Load More button if hasNextPage is true */}
-      {data.noteFeed.hasNextPage && (
-        <button className="btn" onClick={() => fetchMoreNote()}>
-          Load more
-        </button>
-      )}
-    </div>
+    <>
+      <MetaData title="Home" />
+
+      <div className="home">
+        <NoteFeed notes={data.noteFeed.notes} />
+        {/* Only display the Load More button if hasNextPage is true */}
+        {data.noteFeed.hasNextPage && (
+          <button className="btn" onClick={() => fetchMoreNote()}>
+            Load more
+          </button>
+        )}
+      </div>
+    </>
   )
 }

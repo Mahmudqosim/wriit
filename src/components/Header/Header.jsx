@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client"
 import React from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import auth from "../../auth/auth-helper"
 import { GET_AVATAR } from "../../gql/query"
@@ -8,10 +8,9 @@ import "./Header.css"
 
 export default function Header() {
   const isLoggedIn = auth.isAuthenticated()
-  const navigate = useNavigate()
   // const { pathname } = useLocation()
 
-  const { data } = useQuery(GET_AVATAR)
+  const { data, error } = useQuery(GET_AVATAR)
 
   /*   const parsedpath = pathname.split('/')[1].trim()
   const title = parsedpath === '' ?  'Wriit' : parsedpath
@@ -24,6 +23,8 @@ export default function Header() {
      return splitStr.join('')
   }
  */
+
+if(error) console.log(error)
   return (
     <div className="header">
       <div>

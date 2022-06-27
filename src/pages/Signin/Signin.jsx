@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useMutation, gql } from "@apollo/client"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MetaData } from "../../components/MetaData"
 import { GET_AVATAR, GET_ME, GET_NOTES } from "../../gql/query"
 
@@ -24,7 +24,7 @@ export default function Signin() {
   const [showPassword, setShowPassword] = useState(false)
   const [loadingAuth, setLoadingAuth] = useState(false)
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     document.querySelector(".main").classList.add("auth-page")
   }, []) */
 
@@ -35,7 +35,11 @@ export default function Signin() {
   }, [isLoggedIn, navigate])
 
   const [signIn, { error }] = useMutation(SIGNIN_USER, {
-    refetchQueries: [{ query: GET_NOTES }, { query: GET_AVATAR }, {query: GET_ME}],
+    refetchQueries: [
+      { query: GET_NOTES },
+      { query: GET_AVATAR },
+      { query: GET_ME },
+    ],
     onCompleted: (data) => {
       // store the token
       localStorage.setItem("token", data.signIn)
@@ -110,6 +114,13 @@ export default function Signin() {
           <button disabled={loadingAuth} className="btn" type="submit">
             Submit {loadingAuth && <Loader />}
           </button>
+
+          <div className="alt-auth">
+            <span>New to Wriit?</span>
+            <Link to='/signup' className="auth-link">
+              <span>Sign Up</span> <i className="bx bx-right-arrow-alt" />
+            </Link>
+          </div>
         </form>
       </div>
     </>

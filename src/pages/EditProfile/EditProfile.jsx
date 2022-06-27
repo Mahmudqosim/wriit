@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useMutation, useQuery } from "@apollo/client"
 import auth from "../../auth/auth-helper"
 import { GET_AVATAR, GET_ME } from "../../gql/query"
@@ -9,10 +9,10 @@ import { UPDATE_PROFILE } from "../../gql/mutation"
 
 export default function EditProfile() {
   const [loadingSave, setLoadingSave] = useState(false)
-  const isLoggedIn = auth.isAuthenticated()
   const [username, setUsername] = useState("")
-
-  // const { username } = useParams()
+  
+  const isLoggedIn = auth.isAuthenticated()
+  
   const navigate = useNavigate()
   const location = useLocation()
 

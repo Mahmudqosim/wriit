@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useMutation, gql } from "@apollo/client"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MetaData } from "../../components/MetaData"
 import { GET_AVATAR, GET_ME, GET_NOTES } from "../../gql/query"
 import auth from "../../auth/auth-helper"
@@ -123,6 +123,13 @@ export default function Signup() {
           <button disabled={loadingAuth} className="btn" type="submit">
             Submit {loadingAuth && <Loader />}
           </button>
+
+          <div className="alt-auth">
+            <span>Already a user?</span>
+            <Link to='/signin' className="auth-link">
+              <span>Sign In</span> <i className="bx bx-right-arrow-alt" />
+            </Link>
+          </div>
         </form>
       </div>
     </>

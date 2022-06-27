@@ -24,7 +24,7 @@ import Profile from "./pages/Profile/Profile"
 import EditProfile from "./pages/EditProfile/EditProfile"
 
 // API URI & cache
-const uri = "https://wriit.herokuapp.com/api"
+const uri = "http://localhost:3030/api"
 const httpLink = createHttpLink({ uri })
 const cache = new InMemoryCache()
 
@@ -43,11 +43,11 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache,
   resolvers: {
-    Query: {
+/*     Query: {
       isLoggedIn() {
         return !!localStorage.getItem("token")
       },
-    },
+    }, */
   },
   connectToDevTools: true,
 })
